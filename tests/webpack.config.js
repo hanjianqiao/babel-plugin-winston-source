@@ -1,15 +1,15 @@
-const consoleSource = require("./../index");
+const consoleSource = require('./../index');
 
 module.exports = {
     optimization: {
-        minimize: false
+        minimize: false,
     },
-    mode: "development",
+    mode: 'development',
     context: __dirname,
-    entry: "./index.js",
+    entry: './index.js',
     output: {
-        path: __dirname + "/dist",
-        filename: "scripts.min.js"
+        path: __dirname + '/dist',
+        filename: 'scripts.min.js',
     },
     module: {
         rules: [
@@ -17,18 +17,19 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
-
                     // plugins: [consoleSource]
 
                     plugins: [
-                        [consoleSource, {
-                            "segments": 1,
-                            "splitSegment": "/"
-                        }]
-                    ]
-
-                }
+                        [
+                            consoleSource,
+                            {
+                                segments: 1,
+                                splitSegment: '/',
+                            },
+                        ],
+                    ],
+                },
             },
-        ]
-    }
+        ],
+    },
 };

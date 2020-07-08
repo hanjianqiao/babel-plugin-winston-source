@@ -1,21 +1,16 @@
-import Test from './test'
+import Test from './test';
 
 class App {
-
     constructor() {
-
-        Test.a()
+        Test.a();
         console.log('Testing');
 
         this.main();
     }
 
     main() {
-
         console.log('testing 1234');
-
     }
-
 }
 
-export default new App()
+export default new App();
