@@ -1,38 +1,49 @@
+const root = global.rootPath || process.cwd();
+const path = require('path');
+
 /**
  * Prepend file name and number as part of the babel process
  *
  * @author Peter Ingram
+ * {
+ *  resolveFunction:[],
+ *  resolveFile:function(){}
+ * }
  */
 
 module.exports = () => {
     return {
         visitor: {
-            CallExpression(path, state) {
+            CallExpression(nodepath, state) {
                 const opts = state.opts;
+                const logArr = state.opts.resolveFunction || [
+                    'logger.log',
+                    'logger.info',
+                    'logger.wran',
+                    'logger.error',
+                    'logger.debug',
+                ];
 
                 if (
-                    path.node.callee.object &&
-                    path.node.callee.object.name === 'console' &&
-                    path.node.callee.property.name !== 'table'
+                    nodepath.node.callee.object &&
+                    logArr.includes(
+                        nodepath.node.callee.object.name +
+                            '.' +
+                            nodepath.node.callee.property.name
+                    )
                 ) {
                     let file = state.file.opts.filename;
 
                     if (typeof opts.resolveFile === 'function') {
                         file = opts.resolveFile(file);
-                    } else if (!opts || opts.segments !== 0) {
-                        file = state.file.opts.filename.split(
-                            opts.splitSegment ? opts.splitSegment : '/'
-                        );
-                        let segs = file.slice(
-                            Math.max(file.length - opts.segments)
-                        );
-                        file = segs.join('/');
+                    } else {
+                        file = path.relative(root, file);
                     }
 
-                    let value = `${file} (${path.node.loc.start.line}:${path.node.loc.start.column})`;
+                    let value = `${file} (${nodepath.node.loc.start.line}:${nodepath.node.loc.start.column})`;
 
-                    if (path.node.arguments[0].value !== value) {
-                        path.node.arguments.unshift({
+                    if (nodepath.node.arguments[0].value !== value) {
+                        nodepath.node.arguments.unshift({
                             type: 'StringLiteral',
                             value,
                         });
