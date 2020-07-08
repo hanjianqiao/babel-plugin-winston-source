@@ -1,9 +1,9 @@
 {
-  "name": "babel-plugin-console-source",
-  "version": "2.0.5",
+  "name": "babel-plugin-logger-source",
+  "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/peteringram0/babel-console-source",
-  "author": "Peter Ingram <peter.ingram0@gmail.com>",
+  "repository": "https://github.com/meteor199/babel-plugin-logger-source",
+  "author": "meteor199 <meteor199@qq.com>",
   "license": "MIT",
   "scripts": {
     "test": "webpack --config ./tests/webpack.config.js"
@@ -14,5 +14,8 @@
     "webpack": "^4.16.1",
     "webpack-command": "^0.4.1"
   },
+  "files": [
+    "index.js"
+  ],
   "dependencies": {}
 }
