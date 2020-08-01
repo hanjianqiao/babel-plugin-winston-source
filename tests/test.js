@@ -1,5 +1,5 @@
-class Test {
-  constructor() {
+ class Test {
+  public constructor() {
     console.log('log tet');
     console.warn('warn');
     console.info('info');
@@ -7,7 +7,9 @@ class Test {
     console.table(['one', 'two']);
   }
 
-  a() {}
+   a() {
+    //
+  }
 }
 
 export default new Test();

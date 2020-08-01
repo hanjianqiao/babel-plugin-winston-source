@@ -6,11 +6,18 @@
   "author": "meteor199 <meteor199@qq.com>",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "test": "webpack --config ./tests/webpack.config.js"
   },
   "devDependencies": {
+    "@seatask/fabric": "^0.0.1",
+    "@types/jest": "^26.0.8",
+    "@types/node": "^14.0.27",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
+    "jest": "^26.2.2",
+    "ts-jest": "^26.1.4",
+    "typescript": "^3.9.7",
     "webpack": "^4.16.1",
     "webpack-command": "^0.4.1"
   },
