@@ -2,7 +2,7 @@ const projectPath = (global as any).rootPath || process.cwd();
 import { BabelNodePath, BabelState } from './model';
 import * as resolveFileName from './resolveFileName';
 
-export default function () {
+module.exports = function () {
   return {
     visitor: {
       CallExpression(nodePath: BabelNodePath, state: BabelState) {
@@ -51,4 +51,4 @@ export default function () {
       },
     },
   };
-}
+};

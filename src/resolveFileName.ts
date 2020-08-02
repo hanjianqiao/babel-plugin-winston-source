@@ -14,10 +14,10 @@ export function acronyms(obj: ResolveFileNameParams) {
     .filter((r) => r);
 
   const last = arr.pop();
-  const filename = arr.map((r) => r[0]).join('.') + ':' + last;
+  const filename = arr.map((r) => r[0]).join('.') + '/' + last;
 
   let value = obj.prefix ? obj.prefix + ' ' : '';
-  value += `[${filename}:${obj.line}]`;
+  value += `[${filename} (${obj.line}:${obj.column})]`;
   return value;
 }
 /**

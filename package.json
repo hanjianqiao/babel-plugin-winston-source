@@ -6,8 +6,9 @@
   "author": "meteor199 <meteor199@qq.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc src ",
+    "build": "tsc  ",
     "test": "jest",
+    "test:webpack": "webpack --config ./demo/webpack.config.js",
     "dev": "jest --watch",
     "webpack": "webpack --config ./tests/webpack.config.js"
   },

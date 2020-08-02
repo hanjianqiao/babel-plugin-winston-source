@@ -19,11 +19,11 @@ describe('acronyms', () => {
     expect(
       acronyms({
         prefix: 'my-example',
-        filename: 'C:\\workspace\\babel-plugin-logger-source\\src\\view/Home\\index.ts',
+        filename: 'C:\\workspace\\babel-plugin-logger-source\\src\\View/app.js',
         column: 10,
         line: 2,
         projectPath: 'C:\\workspace\\babel-plugin-logger-source\\',
       }),
-    ).toBe('my-example [s.v.H:index.ts:2]');
+    ).toBe('my-example [s.V/app.js (2:10)]');
   });
 });
