@@ -18,7 +18,7 @@ export default function () {
           nodePath.node.callee.object &&
           logArr.includes(nodePath.node.callee.object.name + '.' + nodePath.node.callee.property.name)
         ) {
-          let filename = state.file.opts.filename;
+          const filename = state.file.opts.filename;
 
           const params = {
             filename: filename,
@@ -27,23 +27,19 @@ export default function () {
             line: nodePath.node.loc.start.line,
             column: nodePath.node.loc.start.column,
           };
-
+          let value = '';
           switch (typeof state.opts.resolveFileName) {
             case 'function':
-              filename = state.opts.resolveFileName(params);
+              value = state.opts.resolveFileName(params);
               break;
             case 'string':
               if (resolveFileName[state.opts.resolveFileName]) {
-                filename = resolveFileName[state.opts.resolveFileName](params);
+                value = resolveFileName[state.opts.resolveFileName](params);
                 break;
               }
             default:
-              filename = resolveFileName['acronyms'](params);
+              value = resolveFileName['acronyms'](params);
           }
-
-          let value = '';
-          value += state.opts.prefix ? state.opts.prefix + ' ' : '';
-          value += `[${filename}:${nodePath.node.loc.start.line})]`;
 
           if (nodePath.node.arguments[0].value !== value) {
             nodePath.node.arguments.unshift({

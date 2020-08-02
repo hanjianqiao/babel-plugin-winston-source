@@ -6,8 +6,10 @@
   "author": "meteor199 <meteor199@qq.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "test": "webpack --config ./tests/webpack.config.js"
+    "build": "tsc src ",
+    "test": "jest",
+    "dev": "jest --watch",
+    "webpack": "webpack --config ./tests/webpack.config.js"
   },
   "devDependencies": {
     "@seatask/fabric": "^0.0.1",

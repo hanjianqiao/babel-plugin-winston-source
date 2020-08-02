@@ -1,21 +1,24 @@
-import { ResolveFileNameParams as resolveFileName } from './model';
-import path from 'path';
+import { ResolveFileNameParams } from './model';
+import * as path from 'path';
 
 /**
  * acronyms
  *
  * src/views/Home/index.ts
- * log :s.v.H [index.ts:18]
+ * log :[s.v.H:index.ts:18]
  */
-export function acronyms(obj: resolveFileName) {
-  //
-  const filename = path.relative(obj.projectPath, obj.filename).replace(/\/\//g, '/');
-  filename
+export function acronyms(obj: ResolveFileNameParams) {
+  const arr = path
+    .relative(obj.projectPath, obj.filename)
     .split(/[\\\/]/)
-    .filter((r) => r)
-    .map((r) => r[0])
-    .join('.');
-  return '';
+    .filter((r) => r);
+
+  const last = arr.pop();
+  const filename = arr.map((r) => r[0]).join('.') + ':' + last;
+
+  let value = obj.prefix ? obj.prefix + ' ' : '';
+  value += `[${filename}:${obj.line}]`;
+  return value;
 }
 /**
  * fullpath
@@ -23,10 +26,11 @@ export function acronyms(obj: resolveFileName) {
  * src/views/Home/index.ts
  * log :src/views/Home [index.ts:18]
  */
-export function fullpath(obj: resolveFileName) {
+export function fullpath(obj: ResolveFileNameParams) {
   const filename = path.relative(obj.projectPath, obj.filename);
   let value = '';
   value += obj.prefix ? obj.prefix + ' ' : '';
   value += `[${filename}:${obj.line}]`;
+
   return value;
 }
