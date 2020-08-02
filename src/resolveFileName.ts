@@ -30,7 +30,6 @@ export function fullpath(obj: ResolveFileNameParams) {
   const filename = path.relative(obj.projectPath, obj.filename);
   let value = '';
   value += obj.prefix ? obj.prefix + ' ' : '';
-  value += `[${filename}:${obj.line}]`;
-
+  value += `[${filename} (${obj.line}:${obj.column})]`;
   return value;
 }

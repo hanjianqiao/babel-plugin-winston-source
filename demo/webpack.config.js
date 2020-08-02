@@ -17,7 +17,16 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         query: {
-          plugins: [[loggerSource, {}]],
+          plugins: [
+            [
+              loggerSource,
+              {
+                resolveFileName: function (params) {
+                  return params.filename;
+                },
+              },
+            ],
+          ],
         },
       },
     ],

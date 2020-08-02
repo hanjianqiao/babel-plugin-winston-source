@@ -5,12 +5,12 @@ describe('fullpath', () => {
     expect(
       fullpath({
         prefix: 'my-example',
-        filename: 'C:\\workspace\\babel-plugin-logger-source\\src\\view\\home\\index.ts',
+        filename: 'C:\\workspace\\babel-plugin-logger-source\\src\\view/home\\index.ts',
         column: 10,
         line: 2,
         projectPath: 'C:\\workspace\\babel-plugin-logger-source\\',
       }),
-    ).toBe('my-example [src\\view\\home\\index.ts:2]');
+    ).toBe('my-example [src\\view\\home\\index.ts (2:10)]');
   });
 });
 
