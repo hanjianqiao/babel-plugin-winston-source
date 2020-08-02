@@ -112,8 +112,8 @@ logger.info('test');
 logger.info('[src\\View\\app.js (2:10)]', 'test')
 ```
 
-**Fuction**  
-`((params: ResolveFileNameParams) => string)`  
+**自定义函数**  
+函数定义:`((params: ResolveFileNameParams) => string)`  
 自定义函数，传参如下:
 
 ```js
@@ -130,14 +130,16 @@ params: {
 
 ```
 {
-    "plugins": [
-        ["logger-source",{
-				resolveFileName:function(params){
-					return params.filename;
-				}
-
-		}]
-    ]
-}
+  plugins: [
+    [
+      'logger-source',
+      {
+        resolveFileName: function (params) {
+          return params.filename;
+        },
+      },
+    ],
+  ],
+};
 
 ```

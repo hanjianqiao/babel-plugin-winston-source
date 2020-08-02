@@ -4,6 +4,7 @@
   "main": "index.js",
   "repository": "https://github.com/meteor199/babel-plugin-logger-source",
   "author": "meteor199 <meteor199@qq.com>",
+  "description": "Prepends file name and line numbers for each logger command, based on the source files.",
   "license": "MIT",
   "scripts": {
     "build": "tsc  ",
