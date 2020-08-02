@@ -1,19 +1,21 @@
+English | [简体中文](https://github.com/meteor199/babel-plugin-logger-source/blob/master/README_zh.md)
+
 # Babel-plugin-logger-source
 
 Prepends file name and line numbers for each logger command, based on the source files.
 
-```javascript
+```js
 // src/view/app.js
 class App() {
-    constructor() {
-        logger.log('test')//line no 20,column no 10
-    }
+  constructor() {
+    logger.log('test')//line no 20,column no 10
+  }
 }
 ↓ ↓ ↓ ↓ ↓ ↓
 class App() {
-    constructor() {
-        logger.log('[s.V/app.js (20:10)]', 'test')
-    }
+  constructor() {
+    logger.log('[s.V/app.js (20:10)]', 'test')
+  }
 }
 
 ```
@@ -26,11 +28,11 @@ $ yarn add babel-plugin-logger-source -D
 
 .babelrc
 
-```javascript
+```js
 {
-    "plugins": [
-        ["logger-source"]
-    ]
+  "plugins": [
+    ["logger-source"]
+  ]
 }
 ```
 
@@ -38,16 +40,15 @@ $ yarn add babel-plugin-logger-source -D
 
 .babelrc
 
-```javascript
+```js
 {
-    "plugins": [
-        ["logger-source",{
-			    logger: string[];
-				prefix: string;
-				resolveFileName: Function | 'acronyms' | 'fullpath';
-
-		}]
-    ]
+  "plugins": [
+    ["logger-source",{
+      logger: string[];
+      prefix: string;
+      resolveFileName: Function | 'acronyms' | 'fullpath';
+    }]
+  ]
 }
 ```
 
@@ -56,14 +57,17 @@ $ yarn add babel-plugin-logger-source -D
 Prepends for these command.
 defaults:
 
-```
-logger:[
-	'logger.log',
-	'logger.info',
-	'logger.wran',
-	'logger.error',
-	'logger.debug',
-]
+```js
+{
+  //...
+  logger: [
+    'logger.log',
+    'logger.info',
+    'logger.wran',
+    'logger.error',
+    'logger.debug',
+  ];
+}
 ```
 
 #### prefix
@@ -71,7 +75,7 @@ logger:[
 prefix before filename.  
 example: `prefix:crm-client`。
 
-```
+```js
 logger.info('test');
 ↓ ↓ ↓ ↓ ↓ ↓
 logger.info('crm-client [s.V/app.js (20:10)]', 'test')
@@ -84,7 +88,7 @@ revolve the filename. support:`fullpath`,`acronyms` or custome function.default 
 
 **acronyms**
 
-```
+```js
 // src\\View/app.js
 
 logger.info('test');
@@ -94,7 +98,7 @@ logger.info('[s.V/app.js (20:10)]', 'test')
 
 **fullpath**
 
-```
+```js
 // src\\View/app.js
 
 logger.info('test');
@@ -102,7 +106,7 @@ logger.info('test');
 logger.info('[s.V/app.js (20:10)]', 'test')
 ```
 
-```
+```js
 // src\\View/app.js
 
 logger.info('test');
@@ -116,7 +120,7 @@ logger.info('[src\\View\\app.js (2:10)]', 'test')
 params:
 
 ```js
-params: {
+{
   filename: string; //file name
   projectPath: string; //project path
   prefix: string; //the prefix config in babelrc
@@ -127,16 +131,15 @@ params: {
 
 example:
 
-```
+```js
 {
-    "plugins": [
-        ["logger-source",{
-				resolveFileName:function(params){
-					return params.filename;
-				}
-
-		}]
-    ]
+  "plugins": [
+    ["logger-source",{
+      resolveFileName:function(params){
+        return params.filename;
+      }
+    }]
+  ]
 }
 
 ```
