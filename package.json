@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-logger-source",
-  "version": "1.1.0",
-  "main": "index.js",
+  "version": "1.1.1",
+  "main": "dist/index.js",
   "repository": "https://github.com/meteor199/babel-plugin-logger-source",
   "author": "meteor199 <meteor199@qq.com>",
   "description": "Prepends file name and line numbers for each logger command, based on the source files.",

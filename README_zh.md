@@ -5,15 +5,15 @@
 ```javascript
 // src/view/app.js
 class App() {
-    constructor() {
-        logger.log('test')//line no 20,column no 10
-    }
+  constructor() {
+    logger.log('test')//line no 20,column no 10
+  }
 }
 ↓ ↓ ↓ ↓ ↓ ↓
 class App() {
-    constructor() {
-        logger.log('[s.V/app.js (20:10)]', 'test')
-    }
+  constructor() {
+    logger.log('[s.V/app.js (20:10)]', 'test')
+  }
 }
 
 ```
@@ -28,9 +28,9 @@ $ yarn add babel-plugin-logger-source -D
 
 ```javascript
 {
-    "plugins": [
-        ["logger-source"]
-    ]
+  "plugins": [
+    ["logger-source"]
+  ]
 }
 ```
 
@@ -40,14 +40,13 @@ $ yarn add babel-plugin-logger-source -D
 
 ```javascript
 {
-    "plugins": [
-        ["logger-source",{
-			    logger: string[];//logger函数
-				prefix: string;// 前缀
-				resolveFileName: Function | 'acronyms' | 'fullpath';//文件信息的输出方式
-
-		}]
-    ]
+  "plugins": [
+    ["logger-source",{
+      logger: string[];//logger函数
+      prefix: string;// 前缀
+      resolveFileName: Function | 'acronyms' | 'fullpath';//文件信息的输出方式
+  }]
+  ]
 }
 ```
 
