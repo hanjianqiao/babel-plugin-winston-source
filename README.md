@@ -5,6 +5,11 @@
 Winston: Prepends file name and line numbers for each logger command, based on the source files.
 > Note: you need to use: `logger.info(...args) to make it work`
 
+### install from [Here](https://www.npmjs.com/package/babel-plugin-winston-source)
+```
+npm i babel-plugin-winston-source
+```
+
 ### .bablerc
 ```js
 {
