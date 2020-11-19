@@ -1,145 +1,36 @@
-English | [简体中文](https://github.com/meteor199/babel-plugin-logger-source/blob/master/README_zh.md)
+# babel-plugin-winston-source
 
-# Babel-plugin-logger-source
+> Docs are not completed
 
-Prepends file name and line numbers for each logger command, based on the source files.
+Winston: Prepends file name and line numbers for each logger command, based on the source files.
+> Note: you need to use: `logger.info(...args) to make it work`
 
+### .bablerc
+```js
+{
+  "plugins": [
+    "babel-plugin-winston-source"
+  ]
+}
+```
+
+### your code
+> winston log take two args: (message, meta), so zip messages into an array
 ```js
 // src/view/app.js
 class App() {
   constructor() {
-    logger.log('test')//line no 20,column no 10
+    logger.log('test', 'foo', 'bar')//line no 20,column no 10
   }
 }
+```
+```
 ↓ ↓ ↓ ↓ ↓ ↓
+```
+```js
 class App() {
   constructor() {
-    logger.log('[s.V/app.js (20:10)]', 'test')
+    logger.log(['test', 'foo', 'bar'], {position: '[s.V/app.js (20:10)]'})
   }
 }
-
-```
-
-### Usage
-
-```bash
-$ yarn add babel-plugin-logger-source -D
-```
-
-.babelrc
-
-```js
-{
-  "plugins": [
-    ["logger-source"]
-  ]
-}
-```
-
-### Options
-
-.babelrc
-
-```js
-{
-  "plugins": [
-    ["logger-source",{
-      logger: string[];
-      prefix: string;
-      resolveFileName: Function | 'acronyms' | 'fullpath';
-    }]
-  ]
-}
-```
-
-#### logger
-
-Prepends for these command.
-defaults:
-
-```js
-{
-  //...
-  logger: [
-    'logger.log',
-    'logger.info',
-    'logger.wran',
-    'logger.error',
-    'logger.debug',
-  ];
-}
-```
-
-#### prefix
-
-prefix before filename.  
-example: `prefix:crm-client`。
-
-```js
-logger.info('test');
-↓ ↓ ↓ ↓ ↓ ↓
-logger.info('crm-client [s.V/app.js (20:10)]', 'test')
-
-```
-
-#### resolveFileName
-
-revolve the filename. support:`fullpath`,`acronyms` or custome function.default `acronyms`。
-
-**acronyms**
-
-```js
-// src\\View/app.js
-
-logger.info('test');
-↓ ↓ ↓ ↓ ↓ ↓
-logger.info('[s.V/app.js (20:10)]', 'test')
-```
-
-**fullpath**
-
-```js
-// src\\View/app.js
-
-logger.info('test');
-↓ ↓ ↓ ↓ ↓ ↓
-logger.info('[s.V/app.js (20:10)]', 'test')
-```
-
-```js
-// src\\View/app.js
-
-logger.info('test');
-↓ ↓ ↓ ↓ ↓ ↓
-logger.info('[src\\View\\app.js (2:10)]', 'test')
-```
-
-**Custom Fuction**  
-`((params: ResolveFileNameParams) => string)`
-
-params:
-
-```js
-{
-  filename: string; //file name
-  projectPath: string; //project path
-  prefix: string; //the prefix config in babelrc
-  line: number; //line no
-  column: number; //column no
-}
-```
-
-example:
-
-```js
-{
-  "plugins": [
-    ["logger-source",{
-      resolveFileName:function(params){
-        return params.filename;
-      }
-    }]
-  ]
-}
-
 ```
