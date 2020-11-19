@@ -12,7 +12,7 @@ export interface BabelNodePath {
       object: { name: string };
       property: { name: string };
     };
-    arguments: { value: string; type: string }[];
+    arguments: any[];
     loc: {
       start: {
         line: number;

@@ -41,11 +41,30 @@ module.exports = function () {
               value = resolveFileName['acronyms'](params);
           }
 
-          if (nodePath.node.arguments[0].value !== value) {
-            nodePath.node.arguments.unshift({
-              type: 'StringLiteral',
-              value,
-            });
+          if(!(nodePath.node.arguments.length === 2 && nodePath.node.arguments[1].value === value)){
+            nodePath.node.arguments = [
+              {
+                type: 'ArrayExpression',
+                elements: nodePath.node.arguments
+              },
+              {
+                type: 'ObjectExpression',
+                properties: [
+                  {
+                    type: 'ObjectProperty',
+                    method: false,
+                    key: {
+                      type: 'StringLiteral',
+                      value: 'position'
+                    },
+                    value: {
+                      type: 'StringLiteral',
+                      value: value
+                    }
+                  }
+                ]
+              }
+            ]
           }
         }
       },
